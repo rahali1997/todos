@@ -1,16 +1,52 @@
-html,
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
+.todos {
+  width: 400px;
+  height: 400px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #fff;
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.15);
+  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
+}
+.todos__input{
+  width: 400px;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todos__input > .input {
+  width: 280px;
+}
+
+#btn{
+  width: 50px;
+  height: 50px;
+  margin-top: 12px;
+}
+
+.todos__items{
+ 
+  height: 400px;
+}
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #eee;
+  font-family: 'Lato', sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.card {
+  display: flex;
+  justify-content: space-between;
+ 
+ 
 }
 
-* {
-  box-sizing: border-box;
+.card > p {
+  
+  padding: 8px;
+  
 }
+

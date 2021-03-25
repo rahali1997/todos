@@ -1,65 +1,45 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import todos from '../todos'
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Card from '../Card'
+import { useState } from 'react'
+
+
+
 
 export default function Home() {
+  const [mytodos, setTodo] = useState(todos)
+  const [inputs, setinputs] = useState("")
+
+
+  const add = () => {
+    setTodo([...mytodos, { id: parseInt(Math.floor(Math.random() * 100)), content: inputs }])
+    setinputs('')
+  }
+  function remove(id) {
+    setTodo(mytodos.filter(todos => todos.id !== id))
+
+
+  }
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
+        <title>todos</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="todos app"></meta>
+        <meta name="keywords" content="Ahmed, rahali, todos,next,react,web dev"></meta>
+        <meta name="author" content="Ahmed rahali"></meta>
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <div className="todos">
+        <div className="todos__input">
+          <TextField onChange={e => setinputs(e.target.value)} value={inputs} className="input" id="standard-secondary" label="write something..." color="primary" />
+          <Button onClick={() => add()} id="btn" variant="contained" color="primary">Add</Button>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+        <div className="todos__items">
+          {mytodos.map(item => <Card key={item.id} remove={remove} item={item} />)}
+        </div>
+      </div>
     </div>
   )
 }
